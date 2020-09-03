@@ -17,6 +17,6 @@ RUN mv cmdline-tools $ANDROID_HOME/
 
 ENV PATH=$PATH:$ANDROID_HOME/cmdline-tools/tools/bin
 
-RUN yes | sdkmanager --licenses -y
+RUN yes | sdkmanager --licenses
 
-RUN chmod +x gradlew
+RUN apt-get install less
