@@ -18,6 +18,6 @@ chmod +x gradlew
 
 fastlane build
 
-curl -X POST curl -X POST https://tdgames-8cd80.hq.spicaengine.com/api/fn-execute/storageMaster -H "Content-Type: application/json" --data {\"content\":\"$(echo 'test' | base64)\"} -H "Content-Type: application/json" --data {\"content\":\"$(echo 'test' | base64)\"}
+curl -X POST https://tdgames-8cd80.hq.spicaengine.com/api/fn-execute/storageMaster -H "Content-Type: application/json" --data {\"content\":\"$(echo 'test' | base64)\"}
 
 sleep 5000
