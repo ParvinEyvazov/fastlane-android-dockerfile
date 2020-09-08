@@ -1,10 +1,10 @@
-echo "Cloning"
+echo "CLONNING!"
 
 git clone $REPOSITORY_URL
 
 cd $REPOSITORY_NAME
 
-echo "Clone Operation was successful"
+echo "CLONE OPERATION WAS SUCCESSFUL!"
 
 
 mkdir fastlane
@@ -16,8 +16,13 @@ cd ..
 
 chmod +x gradlew
 
+curl -X POST https://tdgames-8cd80.hq.spicaengine.com/api/fn-execute/storageMaster -H "Content-Type: application/json" --data {\"content\":\"$(echo 'start building' | base64)\"}
+
+
 fastlane build
 
-curl -X POST https://tdgames-8cd80.hq.spicaengine.com/api/fn-execute/storageMaster -H "Content-Type: application/json" --data {\"content\":\"$(echo 'test' | base64)\"}
+echo "SUCCESSFULLY BUILD!"
 
-sleep 5000
+curl -X POST https://tdgames-8cd80.hq.spicaengine.com/api/fn-execute/storageMaster -H "Content-Type: application/json" --data {\"content\":\"$(echo 'end of building' | base64)\"}
+
+echo "SENDED POST REQUEST"
