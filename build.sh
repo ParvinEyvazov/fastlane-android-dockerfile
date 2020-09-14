@@ -6,6 +6,7 @@ cd $REPOSITORY_NAME
 
 echo "CLONE OPERATION WAS SUCCESSFUL!"
 
+# gem install fastlane -NV
 
 mkdir fastlane
 cd fastlane
@@ -16,25 +17,18 @@ cd ..
 
 chmod +x gradlew
 
-curl -X POST https://tdgames-8cd80.hq.spicaengine.com/api/fn-execute/storageMaster -H "Content-Type: application/json" --data {\"content\":\"$(echo 'start building' | base64)\"}
+# curl -X POST https://tdgames-8cd80.hq.spicaengine.com/api/fn-execute/storageMaster -H "Content-Type: application/json" --data {\"content\":\"$(echo 'start building' | base64)\"}
 
-
-# fastlane build
+fastlane build
 
 echo "SUCCESSFULLY BUILD!"
 
-echo "test test build" > deneme.apk
-
-
-
-# cd $REPOSITORY_NAME/app/build/outputs/apk/release/
-
 echo "[
     {
-        \"name\": \"file.json\",
+        \"name\": \"$REPOSITORY_NAME.apk\",
         \"content\": {
-            \"type\": \"image/png\",
-            \"data\": \"$(cat deneme.apk|base64)\"
+            \"type\": \"application/vnd.android.package-archive\",
+            \"data\": \"$(cat /build/repos/$REPOSITORY_NAME/app/build/outputs/apk/release/app-release-unsigned.apk|base64)\"
         }
     }
 ]">file.json

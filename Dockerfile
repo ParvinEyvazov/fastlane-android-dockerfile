@@ -5,8 +5,6 @@ WORKDIR /build/repos
 RUN apt-get update
 RUN apt-get install android-sdk -y
 
-RUN gem install fastlane -NV
-
 RUN apt-get install nano
 
 ENV ANDROID_HOME=/usr/lib/android-sdk
@@ -31,4 +29,11 @@ COPY build.sh ./build.sh
 RUN stat /build/repos/build.sh
 
 RUN chmod +x  /build/repos/build.sh
+
+ARG CACHE_BUST
+
+RUN gem install fastlane -NV 
+
 ENTRYPOINT  /build/repos/build.sh
+
+# magic: docker build . --build-arg=CACHE_BUST=%time%
